@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <div th:fragment="navbar">
+        <nav class="navbar navbar-expand-lg mb-3 d-flex justify-content-between">
+            <a class="logo" href="/home"><img
+                    src="https://miro.medium.com/v2/resize:fit:876/1*j7q_cdCjUkhHhxJIvrpf1A.png" alt="" width="200"
+                    height="60" class="d-inline-row align-text-top"></a>
+
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/contatos">Contatos</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div th:fragment="criar_contato">
+        <form action="criar_contato" method="post" class="form-group row mb-2 ">
+            <div class="form-group col">
+                <input class="form-control" type="text" name="nome" id="nome" placeholder="Nome">
+            </div>
+
+            <div class="form-group col">
+                <input class="form-control" type="text" name="telefone" id="telefone" placeholder="Telefone">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-full">Salvar </button>
+            </div>
+        </form>
+    </div>
+
+    <div th:fragment="recuperar_contato">
+        <table class="table table-light">
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Ações</th>
+            <tr th:each="contato : ${contatos}">
+                <td><span th:text="${contato.getId()}"></span></td>
+                <td><span th:text="${contato.getNome()}"></span></td>
+                <td><span th:text="${contato.getTelefone()}"></span></td>
+                <td><a th:href="@{/deletar_contato(id=${contato.getId()})}" class="btn btn-danger">Deletar</a></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div th:fragment="update_contato">
+        <form th:action="@{/update_contato?{id}(id=${contato.getId()})}" th:object="${contato}" method="post"
+            class="form-group row mb-2 ">
+
+            <input type="hidden" name="id" id="id" value="">
+
+            <div class="form-group col">
+                <input class="form-control" type="text" th:field="*{nome}" name="nome" id="nome" placeholder="Nome">
+            </div>
+
+            <div class="form-group col">
+                <input class="form-control" type="text" th:field="*{telefone}" name="telefone" id="telefone"
+                    placeholder="Telefone">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-full">Salvar </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
