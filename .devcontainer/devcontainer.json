@@ -5,11 +5,11 @@
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
     "image": "mcr.microsoft.com/devcontainers/java:0-17",
     
-    "hostRequirements": {
-      "cpus": 8,
-      "memory": "8gb",
-      "storage": "32gb"
-   },
+    //"hostRequirements": {
+    //"cpus": 8,
+    //"memory": "8gb",
+    //"storage": "32gb"
+    //},
     //"updateContentCommand": "cd web/contatosweb/src/main/java/com/romulo/contatos/ ; ./gradew restart",
     "features": {
       "ghcr.io/devcontainers/features/java:1": {
